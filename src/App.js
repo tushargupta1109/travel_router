@@ -27,11 +27,11 @@ const App = () => {
     });
   }, []);
 
-  // useEffect(() => {
-  //   const filtered = places.filter((place) => Number(place.rating) > rating);
+  useEffect(() => {
+    const filtered = places.filter((place) => Number(place.rating) > rating);
 
-  //   setFilteredPlaces(filtered);
-  // }, [rating]);
+    setFilteredPlaces(filtered);
+  }, [rating]);
 
   useEffect(() => {
     if (bounds) {
@@ -43,7 +43,7 @@ const App = () => {
       getPlacesData(type, bounds.sw, bounds.ne)
         .then((data) => {
           console.log(data);
-          //setPlaces(data.filter((place) => place.name && place.num_reviews > 0));
+          setPlaces(data.filter((place) => place.name && place.num_reviews > 0));
           setFilteredPlaces([]);
           setRating('');
           setIsLoading(false);
