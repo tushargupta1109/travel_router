@@ -1,32 +1,33 @@
 import { CircularProgress,Grid,Select,FormControl, InputLabel, MenuItem, Typography } from '@material-ui/core';
-import React,{useState} from 'react'
+import React,{useState,useEffect,createRef} from 'react'
 import useStyles from './styles';
 import PlaceDetails from'../PlaceDetails/PlaceDetails';
+import { Children } from 'react';
 
-const List = () => {
+const List = ({places,childClicked,isLoading,type,setType,rating,setRating}) => {
     const classes=useStyles();
-    const [type,setType]=useState('resturants');
-    const [rating,setRating]=useState('');
-
-    const places=[
-            {name: 'cool place'},
-            {name: 'best beer'},
-            {name: 'best steak'},
-            {name: 'cool place'},
-            {name: 'best beer'},
-            {name: 'best steak'},
-        ];
+    const [elRefs,setElRefs]=useState([]);
+    
+    useEffect(() => {
+        setElRefs((refs) => Array(places?.length).fill().map((_, i) => refs[i] || createRef()));
+      }, [places]);
 
     return (
         <div className={classes.container}>
             <Typography variant="h4">Resturants,Hotels & Attractions around you</Typography>
+            {isLoading?(
+                <div className={classes.loading}>
+                    <CircularProgress size="5rem"/>
+                </div> 
+            ) : (
+            <>
             <FormControl className={classes.formControl}>
-                <InputLabel>Type</InputLabel>
-                <Select value={type} onChange={(e)=>setType(e.target.value)}>
-                    <MenuItem value="resturants">Resturants</MenuItem> 
-                    <MenuItem value="hotels">Hotels</MenuItem> 
-                    <MenuItem value="attractions">Attractions</MenuItem> 
-                </Select>
+            <InputLabel id="type">Type</InputLabel>
+            <Select id="type" value={type} onChange={(e) => setType(e.target.value)}>
+              <MenuItem value="resturants">Restaurants</MenuItem>
+              <MenuItem value="hotels">Hotels</MenuItem>
+              <MenuItem value="attractions">Attractions</MenuItem>
+            </Select>
             </FormControl>
             <FormControl className={classes.formControl}>
                 <InputLabel>Rating</InputLabel>
@@ -38,11 +39,17 @@ const List = () => {
             </FormControl>
             <Grid container spacing={3} className={classes.list}>
                 {places?.map((place,i)=>(
-                    <Grid item key={i} xs={12}>
-                        <PlaceDetails place ={place}/>
+                    <Grid ref={elRefs[i]} item key={i} xs={12}>
+                        <PlaceDetails
+                            place ={place}
+                            selected={Number(childClicked)===i}
+                            refProp={elRefs[i]}
+                        />
                     </Grid>
                 ))}
             </Grid>
+            </>
+            )}
         </div>
     )
 }
