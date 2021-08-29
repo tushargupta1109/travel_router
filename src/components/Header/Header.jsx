@@ -1,19 +1,13 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { Autocomplete } from '@react-google-maps/api';
 import { AppBar, Toolbar, Typography, InputBase, Box } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 
 import useStyles from './styles.js';
 
-const Header = ({setCoordinates}) => {
+const Header = ({ onPlaceChanged, onLoad }) => {
   const classes = useStyles();
-  const [autoComplete,setAutoComplete]=useState(null);
-  const onLoad=(autoC)=>setAutoComplete(autoC);
-  const onPlaceChanged=()=>{
-    const lat=autoComplete.getplaces().geometry.location.lat();
-    const lng=autoComplete.getplaces().geometry.location.lng();
-    setCoordinates({lat,lng});
-  }
+
   return (
     <AppBar position="static">
       <Toolbar className={classes.toolbar}>
