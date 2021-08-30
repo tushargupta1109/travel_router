@@ -1,8 +1,10 @@
 import React, { useState, useEffect, createRef } from 'react';
 import { CircularProgress, Grid, Typography, InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
-
+import alanBtn from "@alan-ai/alan-sdk-web";
 import PlaceDetails from '../PlaceDetails/PlaceDetails';
 import useStyles from './styles.js';
+import { IsoOutlined } from '@material-ui/icons';
+const alanKey="e60022313b49ea12706c53ee7cb7caf92e956eca572e1d8b807a3e2338fdd0dc";
 
 const List = ({ places, type, setType, rating, setRating, childClicked, isLoading }) => {
   const [elRefs, setElRefs] = useState([]);
@@ -11,6 +13,17 @@ const List = ({ places, type, setType, rating, setRating, childClicked, isLoadin
   useEffect(() => {
     setElRefs((refs) => Array(places.length).fill().map((_, i) => refs[i] || createRef()));
   }, [places]);
+
+  useEffect(() => {
+    alanBtn({
+      key: alanKey,
+      onCommand: (commandData) => {
+        if (commandData.command === "filtertypecommand") {
+          setType(commandData.type);
+        }
+      },
+    });
+  }, []);
 
   return (
     <div className={classes.container}>
