@@ -35,7 +35,6 @@ const List = ({ places, type, setType, rating, setRating, childClicked, isLoadin
               <MenuItem value="">All</MenuItem>
               <MenuItem value="3">Above 3.0</MenuItem>
               <MenuItem value="4">Above 4.0</MenuItem>
-              <MenuItem value="4.5">Above 4.5</MenuItem>
             </Select>
           </FormControl>
           <Grid container spacing={3} className={classes.list}>

@@ -11,13 +11,12 @@ const App = () => {
   const [rating, setRating] = useState('');
 
   const [coords, setCoords] = useState({});
-  const [bounds, setBounds] = useState(null);
+  const [bounds, setBounds] = useState({});
 
   const [weatherData, setWeatherData] = useState([]);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
   const [places, setPlaces] = useState([]);
 
-  const [autocomplete, setAutocomplete] = useState(null);
   const [childClicked, setChildClicked] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -34,7 +33,7 @@ const App = () => {
   }, [rating]);
 
   useEffect(() => {
-    if (bounds) {
+    if (bounds.sw && bounds.ne) {
       setIsLoading(true);
 
       getWeatherData(coords.lat, coords.lng)
@@ -43,26 +42,18 @@ const App = () => {
       getPlacesData(type, bounds.sw, bounds.ne)
         .then((data) => {
           console.log(data);
-          setPlaces(data.filter((place) => place.name && place.num_reviews > 0));
+          setPlaces(data?.filter((place) => place.name && place.num_reviews > 0));
           setFilteredPlaces([]);
           setRating('');
           setIsLoading(false);
         });
     }
-  }, [bounds, type]);
-  const onLoad = (autoC) => setAutocomplete(autoC);
-
-  const onPlaceChanged = () => {
-    const lat = autocomplete.getPlace().geometry.location.lat();
-    const lng = autocomplete.getPlace().geometry.location.lng();
-
-    setCoords({ lat, lng });
-  };
+  }, [type,bounds]);
 
   return (
     <>
       <CssBaseline />
-      <Header onPlaceChanged={onPlaceChanged} onLoad={onLoad} />
+      <Header setCoords={setCoords} />
       <Grid container spacing={3} style={{ width: '100%' }}>
         <Grid item xs={12} md={4}>
           <List
