@@ -8,8 +8,8 @@ import useStyles from './styles.js';
 const Header = ({setCoords}) => {
   const classes = useStyles();
   const [autocomplete,setAutocomplete]=useState(null);
-  const onLoad = (autoC) => setAutocomplete(autoC);
-
+  const onLoad = (autoC) => {setAutocomplete(autoC)
+  console.log(autoC);}
   const onPlaceChanged = () => {
     const lat = autocomplete.getPlace().geometry.location.lat();
     const lng = autocomplete.getPlace().geometry.location.lng();

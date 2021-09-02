@@ -17,16 +17,13 @@ const List = ({ places, type, setType, rating, setRating, childClicked, isLoadin
   useEffect(() => {
     alanBtn({
       key: alanKey,
-      onCommand: (commandData) => {
+      onCommand: async (commandData) => {
         if (commandData.command === "filterbothCommand") {
-          setRating(commandData.rate);
-          setType(commandData.type);
+          await setType(commandData.type);
+           setRating(commandData.rate);
         }
         if (commandData.command === "filterTypeCommand") {
           setType(commandData.type);
-        }
-        if(commandData.command === "setCommand"){
-          
         }
       },
     });
