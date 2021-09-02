@@ -3,8 +3,8 @@ import { CircularProgress, Grid, Typography, InputLabel, MenuItem, FormControl, 
 import alanBtn from "@alan-ai/alan-sdk-web";
 import PlaceDetails from '../PlaceDetails/PlaceDetails';
 import useStyles from './styles.js';
-import { IsoOutlined } from '@material-ui/icons';
-const alanKey="e60022313b49ea12706c53ee7cb7caf92e956eca572e1d8b807a3e2338fdd0dc";
+import { IsOutlined } from '@material-ui/icons';
+const alanKey="e60022313b49ea12706c53ee7cb7caf92e956eca572e1d8b807a3e2338fdd0dc/stage";
 
 const List = ({ places, type, setType, rating, setRating, childClicked, isLoading }) => {
   const [elRefs, setElRefs] = useState([]);
@@ -18,8 +18,15 @@ const List = ({ places, type, setType, rating, setRating, childClicked, isLoadin
     alanBtn({
       key: alanKey,
       onCommand: (commandData) => {
-        if (commandData.command === "filtertypecommand") {
+        if (commandData.command === "filterbothCommand") {
+          setRating(commandData.rate);
           setType(commandData.type);
+        }
+        if (commandData.command === "filterTypeCommand") {
+          setType(commandData.type);
+        }
+        if(commandData.command === "setCommand"){
+          
         }
       },
     });
@@ -27,7 +34,7 @@ const List = ({ places, type, setType, rating, setRating, childClicked, isLoadin
 
   return (
     <div className={classes.container}>
-      <Typography variant="h4">Food & Dining around you</Typography>
+      <Typography variant="h4">Resturants,Hotels & Attractions around you</Typography>
       {isLoading ? (
         <div className={classes.loading}>
           <CircularProgress size="5rem" />
@@ -45,9 +52,9 @@ const List = ({ places, type, setType, rating, setRating, childClicked, isLoadin
           <FormControl className={classes.formControl}>
             <InputLabel id="rating">Rating</InputLabel>
             <Select id="rating" value={rating} onChange={(e) => setRating(e.target.value)}>
-              <MenuItem value="">All</MenuItem>
-              <MenuItem value="3">Above 3.0</MenuItem>
-              <MenuItem value="4">Above 4.0</MenuItem>
+              <MenuItem value="0">All</MenuItem>
+              <MenuItem value="3">Above 3 star</MenuItem>
+              <MenuItem value="4">Above 4 star</MenuItem>
             </Select>
           </FormControl>
           <Grid container spacing={3} className={classes.list}>

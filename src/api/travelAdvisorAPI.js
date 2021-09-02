@@ -14,10 +14,9 @@ export const getPlacesData = async (type, sw, ne) => {
     'x-rapidapi-key': process.env.REACT_APP_RAPIDAPI_KEY
       },
     });
-    console.log(data);
     return data; 
   } catch (error) {
-    //console.log(error);
+    console.log(error);
   }
 };
 

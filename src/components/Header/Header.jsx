@@ -15,7 +15,7 @@ const Header = ({setCoords}) => {
     const lng = autocomplete.getPlace().geometry.location.lng();
 
     setCoords({ lat, lng });
-  };
+  }; 
   return (
     <AppBar position="static">
       <Toolbar className={classes.toolbar}>
