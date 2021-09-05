@@ -13,7 +13,6 @@ const List = ({ places, type, setType, rating, setRating, childClicked, isLoadin
   useEffect(() => {
     setElRefs((refs) => Array(places.length).fill().map((_, i) => refs[i] || createRef()));
   }, [places]);
-
   useEffect(() => {
     alanBtn({
       key: alanKey,

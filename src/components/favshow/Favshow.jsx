@@ -1,49 +1,16 @@
-import React,{useContext} from 'react';
+import React from 'react';
 import { Box, Typography, Button, Card, CardMedia, CardContent, CardActions, Chip } from '@material-ui/core';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import PhoneIcon from '@material-ui/icons/Phone';
 import Rating from '@material-ui/lab/Rating';
-import {favContext} from '../context';
-import firebase,{ db } from "../firebase";
+
 import useStyles from './styles.js';
-import { Message } from '@material-ui/icons';
 
-const PlaceDetails = ({ place, selected, refProp }) => {
-  const [fav,setFav]=useContext(favContext);
 
-  const uid = firebase.auth().currentUser.uid;
-  const handleadd=async()=>{
-    if(uid===""){
-      Message.error("Not Logged In");
-      return ;
-    }
-    const data=await db.collection("users").doc(uid).get();
-    if(data){
-      let fav=await data.data().fav;
-      if(!fav){
-        fav=[{place}];
-        db.collection("users").doc(uid).set({fav},{merge:true});
-      }else{
-        fav.push({place});
-        db.collection("users").doc(uid).set({fav},{merge:true});
-      }
-    }
-    Message.info(`added to favourites`);
-
-    (async function () {
-      db.collection("users")
-        .doc(uid) 
-        .get()
-        .then((data) => {
-          if (data) {
-            setFav(data.data().fav);
-          }
-        });
-    })();
-  }
-
+const Favshow = ({place }) => {
   if (selected) refProp?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   const classes = useStyles();
+
   return (
     <Card elevation={6} ref={refProp}>
       <CardMedia
@@ -90,12 +57,13 @@ const PlaceDetails = ({ place, selected, refProp }) => {
         <Button size="small" color="primary" onClick={() => window.open(place.website, '_blank')}>
           Website
         </Button>
-        <Button size="small" color="primary" onClick={()=>handleadd()}>
-          Add to favourite
+        <Button size="small" color="primary" onClick={()=>setFav(place)}>
+          Remove from favourite
         </Button>
       </CardActions>
     </Card>
   );
 };
 
-export default PlaceDetails;
+
+export default Favshow;
