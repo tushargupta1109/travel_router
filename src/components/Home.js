@@ -46,6 +46,7 @@ const Home = () => {
         });
     }
   }, [type,bounds]);
+  
   return (
     <>
       <CssBaseline />

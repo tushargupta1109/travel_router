@@ -11,6 +11,16 @@ const Favshow = ({place }) => {
   if (selected) refProp?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   const classes = useStyles();
 
+  const handledelete = async () => {
+    const data = await db.collection("users").doc(uid).get();
+    let fav = await data.data().fav;
+    const filteredfav = fav.filter((value) => {
+      return value.phone !== place.phone;
+    });
+    db.collection("users").doc(uid).set({ fav: filteredfav });
+    setTimeout(hide, 0);
+  };
+
   return (
     <Card elevation={6} ref={refProp}>
       <CardMedia
@@ -57,8 +67,8 @@ const Favshow = ({place }) => {
         <Button size="small" color="primary" onClick={() => window.open(place.website, '_blank')}>
           Website
         </Button>
-        <Button size="small" color="primary" onClick={()=>setFav(place)}>
-          Remove from favourite
+        <Button size="small" color="primary" onClick={()=>handledelete()}>
+          Remove from favourites
         </Button>
       </CardActions>
     </Card>

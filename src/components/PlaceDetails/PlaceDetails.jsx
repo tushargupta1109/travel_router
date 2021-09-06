@@ -15,21 +15,22 @@ const PlaceDetails = ({ place, selected, refProp }) => {
   const [userin]=useAuthState(auth);
 
   const handleadd=async()=>{
+    console.log('called');
     const uid = firebase.auth().currentUser.uid;
-    // if(uid===""){
-    //   return ;
-    // }
+    if(uid===""){
+      return ;
+    }
     const data=await db.collection("users").doc(uid).get();
     if(data){
       let fav=await data.data().fav;
       if(!fav){
         fav=[{place}];
         db.collection("users").doc(uid).set({fav},{merge:true});
-        setFav(data.data().fav);
+         setFav(data.data().fav);
       }else{
         fav.push({place});
         db.collection("users").doc(uid).set({fav},{merge:true});
-        setFav(data.data().fav);
+         setFav(data.data().fav);
       }
       console.log(fav);
     }
