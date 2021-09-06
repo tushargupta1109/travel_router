@@ -5,6 +5,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import useStyles from "./styles.js";
 import { Link } from "react-router-dom";
 import firebase from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+const auth=firebase.auth();
 
 const Header = ({ setCoords }) => {
   const classes = useStyles();
@@ -18,15 +20,8 @@ const Header = ({ setCoords }) => {
 
     setCoords({ lat, lng });
   };
-  const uid = firebase.auth().currentUser.uid;
-  console.log(firebase.auth().currentUser);
-  let a2 = "Logout";
-  let ch = "Login";
-  if (uid === "") {
-    ch = a2;
-  }
+  const [userin]=useAuthState(auth);
   const googlelogin = () => {
-    if (uid === "") {
       var provider = new firebase.auth.GoogleAuthProvider();
       firebase
         .auth()
@@ -37,8 +32,9 @@ const Header = ({ setCoords }) => {
         .catch((error) => {
           console.log(error);
         });
-    } else {
-      firebase
+  };
+  const out=()=>{
+    firebase
         .auth()
         .signOut()
         .then((res) => {
@@ -47,28 +43,30 @@ const Header = ({ setCoords }) => {
         .catch((error) => {
           console.log(error);
         });
-    }
-  };
+  }
   return (
     <AppBar position="static">
       <Toolbar className={classes.toolbar}>
         <Typography variant="h5" className={classes.title}>
           Travel Advisor
         </Typography>
-        <Link to="/" style={{ color: "white" }}>
-          <Typography
-            variant="h6"
-            className={classes.title}
-            onClick={() => googlelogin()}
-          >
-            {ch}
+        {userin?(
+          <>
+          <Typography variant="h6" style={{ color: "white" }} className={classes.title} onClick={() => out()}>
+            Logout
           </Typography>
-        </Link>
-        <Link to="/Favourites" style={{ color: "white" }}>
+          <Link to="/Favourites" style={{ color: "white" }}>
           <Typography variant="h6" className={classes.title}>
             Favourites
           </Typography>
         </Link>
+        </>
+        ) : (
+            <Typography variant="h6" style={{ color: "white" }} className={classes.title} onClick={() => googlelogin()}>
+            Login
+          </Typography>
+          )
+        }
         <Box display="flex">
           <Typography variant="h6" className={classes.title}>
             Explore new places

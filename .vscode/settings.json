@@ -8,5 +8,6 @@
     "queue": "cpp",
     "type_traits": "cpp",
     "xutility": "cpp"
-  }
+  },
+  "editor.formatOnSave": true
 }

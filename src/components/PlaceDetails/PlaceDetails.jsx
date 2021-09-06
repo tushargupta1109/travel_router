@@ -6,40 +6,33 @@ import Rating from '@material-ui/lab/Rating';
 import {favContext} from '../context';
 import firebase,{ db } from "../firebase";
 import useStyles from './styles.js';
-import { Message } from '@material-ui/icons';
+import { useAuthState } from "react-firebase-hooks/auth";
+const auth=firebase.auth();
 
 const PlaceDetails = ({ place, selected, refProp }) => {
-  const [fav,setFav]=useContext(favContext);
 
-  const uid = firebase.auth().currentUser.uid;
+  const [fav,setFav]=useContext(favContext);
+  const [userin]=useAuthState(auth);
+
   const handleadd=async()=>{
-    if(uid===""){
-      Message.error("Not Logged In");
-      return ;
-    }
+    const uid = firebase.auth().currentUser.uid;
+    // if(uid===""){
+    //   return ;
+    // }
     const data=await db.collection("users").doc(uid).get();
     if(data){
       let fav=await data.data().fav;
       if(!fav){
         fav=[{place}];
         db.collection("users").doc(uid).set({fav},{merge:true});
+        setFav(data.data().fav);
       }else{
         fav.push({place});
         db.collection("users").doc(uid).set({fav},{merge:true});
+        setFav(data.data().fav);
       }
+      console.log(fav);
     }
-    Message.info(`added to favourites`);
-
-    (async function () {
-      db.collection("users")
-        .doc(uid) 
-        .get()
-        .then((data) => {
-          if (data) {
-            setFav(data.data().fav);
-          }
-        });
-    })();
   }
 
   if (selected) refProp?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -90,9 +83,10 @@ const PlaceDetails = ({ place, selected, refProp }) => {
         <Button size="small" color="primary" onClick={() => window.open(place.website, '_blank')}>
           Website
         </Button>
+        {userin?(
         <Button size="small" color="primary" onClick={()=>handleadd()}>
           Add to favourite
-        </Button>
+        </Button>):('')}
       </CardActions>
     </Card>
   );
