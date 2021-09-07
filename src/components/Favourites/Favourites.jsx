@@ -1,11 +1,13 @@
-import React, { useContext, useEffect } from "react";
-import { AppBar, Toolbar, Typography, Grid } from "@material-ui/core";
+import { AppBar, Grid, Toolbar, Typography, Select } from "@material-ui/core";
+import React, { useContext, useEffect,useState ,createRef} from "react";
+import { Link } from "react-router-dom";
 import { favContext } from "../context";
 import firebase, { db } from "../firebase";
-import { Link } from "react-router-dom";
 import useStyles from "./styles.js";
+import Favshow from "../Favshow/Favshow";
 
 const Favourites = () => {
+  const [elRefs, setElRefs] = useState([]);
   const classes = useStyles();
   const uid = firebase.auth().currentUser.uid;
   const [fav, setFav] = useContext(favContext);
@@ -15,18 +17,30 @@ const Favourites = () => {
         .doc(uid)
         .get()
         .then((data) => {
-          setFav(data);
+          if(data.data()){
+            setFav(data.data().fav);
+          }
         });
     }
     fetchf();
   }, []);
-  console.log(fav);
+
+  useEffect(() => {
+    setElRefs((refs) =>
+      Array(fav.length)
+        .fill()
+        .map((_, i) => refs[i] || createRef())
+    );
+  }, [fav]);
   return (
     <div>
       <AppBar position="static">
         <Toolbar className={classes.toolbar}>
           <Typography variant="h5" className={classes.title}>
             Travel Advisor
+          </Typography>
+          <Typography variant="h5" className={classes.title}>
+            My Favourites
           </Typography>
           <Link to="/" style={{ color: "white" }}>
             <Typography variant="h6" className={classes.title}>
@@ -46,8 +60,12 @@ const Favourites = () => {
       ) : (
         <Grid container spacing={3}>
           {fav?.map((place, i) => (
-            <Grid key={i} item xs={12}>
-              <favshow place={place} />
+            <Grid ref={elRefs[i]} key={i} item xs={12}>
+              <Favshow
+                
+                refProp={elRefs[i]}
+                place={place}
+              />
             </Grid>
           ))}
         </Grid>

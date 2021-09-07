@@ -3,7 +3,6 @@ import { CircularProgress, Grid, Typography, InputLabel, MenuItem, FormControl, 
 import alanBtn from "@alan-ai/alan-sdk-web";
 import PlaceDetails from '../PlaceDetails/PlaceDetails';
 import useStyles from './styles.js';
-import { IsOutlined } from '@material-ui/icons';
 const alanKey="e60022313b49ea12706c53ee7cb7caf92e956eca572e1d8b807a3e2338fdd0dc/stage";
 
 const List = ({ places, type, setType, rating, setRating, childClicked, isLoading }) => {
