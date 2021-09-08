@@ -27,23 +27,38 @@ const PlaceDetails = ({ place, selected, refProp }) => {
     if (uid === "") {
       return;
     }
+    const obj = {
+      name: place.name ? place.name : "",
+      address: place.address ? place.address : "",
+      photo: place.photo ? place.photo : "",
+      ranking: place.ranking ? place.ranking : "",
+      rating: place.rating ? place.rating : "",
+      num_reviews: place.num_reviews ? place.num_reviews : "",
+      web_url: place.web_url ? place.web_url : "",
+      website: place.website ? place.web_url : "",
+      awards: place.awards ? place.awards : [],
+    };
     const data = await db.collection("users").doc(uid).get();
     if (data) {
       if (data.data()) {
         let fav = await data.data().fav;
-        if (!fav) {
-          fav = [{ place }];
+        let flag = true;
+        fav.map((value) => {
+          if (value.obj.name === obj.name) {
+            flag = false;
+          }
+        });
+        if (flag === true) {
+          fav.push({ obj });
           db.collection("users").doc(uid).set({ fav }, { merge: true });
-          setFav(data.data().fav);
-        } else {
-          fav.push({ place });
-          db.collection("users").doc(uid).set({ fav }, { merge: true });
-          setFav(data.data().fav);
+          alert('added to favourites');
+        }else{
+          alert('already in favourites');
         }
       } else {
-        let fav = [{ place }];
+        let fav = [{ obj }];
         db.collection("users").doc(uid).set({ fav });
-        setFav(fav);
+        alert('added to favourites');
       }
     }
   };

@@ -60,9 +60,8 @@ const Favourites = () => {
       ) : (
         <Grid container spacing={3}>
           {fav?.map((place, i) => (
-            <Grid ref={elRefs[i]} key={i} item xs={12}>
+            <Grid ref={elRefs[i]} key={i} item xs={12} style={{ display: "flex",justifyContent:"center"}}>
               <Favshow
-                
                 refProp={elRefs[i]}
                 place={place}
               />
