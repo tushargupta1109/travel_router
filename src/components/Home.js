@@ -8,16 +8,13 @@ import Map from './Map/Map';
 const Home = () => {
   const [type, setType] = useState('restaurants');
   const [rating, setRating] = useState('0');
-
   const [coords, setCoords] = useState({});
   const [bounds, setBounds] = useState({});
-
-  const [weatherData, setWeatherData] = useState([]);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
   const [places, setPlaces] = useState([]);
-
   const [childClicked, setChildClicked] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
       setCoords({ lat: latitude, lng: longitude });
@@ -26,16 +23,12 @@ const Home = () => {
 
   useEffect(() => {
     const filtered = places.filter((place) => Number(place.rating) > rating);
-
     setFilteredPlaces(filtered);
   }, [rating]);
 
   useEffect(() => {
     if (bounds.sw && bounds.ne) {
       setIsLoading(true);
-
-      getWeatherData(coords.lat, coords.lng)
-        .then((data) => setWeatherData(data));
 
       getPlacesData(type, bounds.sw, bounds.ne)
         .then((data) => {
@@ -70,7 +63,6 @@ const Home = () => {
             setCoords={setCoords}
             coords={coords}
             places={filteredPlaces.length ? filteredPlaces : places}
-            weatherData={weatherData}
           />
         </Grid>
       </Grid>

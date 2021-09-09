@@ -20,9 +20,9 @@ const Favshow = ({ place, refProp  }) => {
     alert('removed successfully ,refresh the page')
   }; 
   return (
-    <Card elevation={6} ref={refProp} style={{width:600}}>
+    <Card elevation={6} ref={refProp} style={{width:550}}>
       <CardMedia
-        style={{ height: 400  }}
+        style={{ height: 350  }}
         image={place.obj.photo ? place.obj.photo.images.large.url : 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'}
         title={place.obj.name}
       />
@@ -56,12 +56,6 @@ const Favshow = ({ place, refProp  }) => {
         )}
       </CardContent>
       <CardActions>
-        <Button size="small" color="primary" onClick={() => window.open(place.obj.web_url, '_blank')}>
-          Trip Advisor
-        </Button>
-        <Button size="small" color="primary" onClick={() => window.open(place.obj.website, '_blank')}>
-          Website
-        </Button>
         <Button size="small" color="primary" onClick={()=>handledelete()}>
           Remove from favourites
         </Button>

@@ -5,8 +5,9 @@ import SearchIcon from "@material-ui/icons/Search";
 import useStyles from "./styles.js";
 import { Link } from "react-router-dom";
 import firebase from "../firebase";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { useAuthState } from "react-firebase-hooks/auth";
-const auth=firebase.auth();
+const auth = firebase.auth();
 
 const Header = ({ setCoords }) => {
   const classes = useStyles();
@@ -20,55 +21,67 @@ const Header = ({ setCoords }) => {
 
     setCoords({ lat, lng });
   };
-  const [userin]=useAuthState(auth);
+  const [userin] = useAuthState(auth);
   const googlelogin = () => {
-      var provider = new firebase.auth.GoogleAuthProvider();
-      firebase
-        .auth()
-        .signInWithPopup(provider)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-  };
-  const out=()=>{
+    var provider = new firebase.auth.GoogleAuthProvider();
     firebase
-        .auth()
-        .signOut()
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-  }
+      .auth()
+      .signInWithPopup(provider)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const out = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <AppBar position="static">
       <Toolbar className={classes.toolbar}>
         <Typography variant="h5" className={classes.title}>
-          Travel Advisor
+          Travel Router
         </Typography>
-        {userin?(
+        {userin ? (
           <>
-          <Typography variant="h6" style={{ color: "white" }} className={classes.title} onClick={() => out()}>
-            Logout
-          </Typography>
-          <Link to="/Favourites" style={{ color: "white" }}>
-          <Typography variant="h6" className={classes.title}>
-            Favourites
-          </Typography>
-        </Link>
-        </>
+          <Link
+              to="/Favourites"
+              style={{ color: "white", textDecoration: "none" }}
+            >
+              <Typography variant="h5" className={classes.title}>
+                Favourites
+              </Typography>
+            </Link>
+            <Typography
+              variant="h5"
+              style={{ color: "white", cursor: "pointer" }}
+              className={classes.title}
+              onClick={() => out()}
+            >
+              Logout
+            </Typography>
+          </>
         ) : (
-            <Typography variant="h6" style={{ color: "white" }} className={classes.title} onClick={() => googlelogin()}>
+          <Typography
+            variant="h5"
+            style={{ color: "white", cursor: "pointer" }}
+            className={classes.title}
+            onClick={() => googlelogin()}
+          >
             Login
           </Typography>
-          )
-        }
+        )}
         <Box display="flex">
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h5" className={classes.title}>
             Explore new places
           </Typography>
           <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>

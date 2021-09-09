@@ -34,8 +34,6 @@ const PlaceDetails = ({ place, selected, refProp }) => {
       ranking: place.ranking ? place.ranking : "",
       rating: place.rating ? place.rating : "",
       num_reviews: place.num_reviews ? place.num_reviews : "",
-      web_url: place.web_url ? place.web_url : "",
-      website: place.website ? place.web_url : "",
       awards: place.awards ? place.awards : [],
     };
     const data = await db.collection("users").doc(uid).get();
@@ -84,7 +82,7 @@ const PlaceDetails = ({ place, selected, refProp }) => {
         <Box display="flex" justifyContent="space-between" my={2}>
           <Rating name="read-only" value={Number(place.rating)} readOnly />
           <Typography component="legend">
-            {place.num_reviews} review{place.num_reviews > 1 && "s"}
+            {place.num_reviews} review{place.num_reviews > 1 }
           </Typography>
         </Box>
         <Box display="flex" justifyContent="space-between">

@@ -1,4 +1,4 @@
-import { AppBar, Grid, Toolbar, Typography, Select } from "@material-ui/core";
+import { AppBar, Grid, Toolbar, Typography } from "@material-ui/core";
 import React, { useContext, useEffect,useState ,createRef} from "react";
 import { Link } from "react-router-dom";
 import { favContext } from "../context";
@@ -37,12 +37,12 @@ const Favourites = () => {
       <AppBar position="static">
         <Toolbar className={classes.toolbar}>
           <Typography variant="h5" className={classes.title}>
-            Travel Advisor
+            Travel Router
           </Typography>
           <Typography variant="h5" className={classes.title}>
             My Favourites
           </Typography>
-          <Link to="/" style={{ color: "white" }}>
+          <Link to="/" style={{ color: "white",textDecoration:"none" }}>
             <Typography variant="h6" className={classes.title}>
               Go to Home
             </Typography>
