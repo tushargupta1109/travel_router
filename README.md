@@ -4,11 +4,11 @@ A interesting way to find Hotels,Restaurants and Attractions arround us or in an
 
 > ## Preview
 
-> ### ![Homepage](<images/Screenshot(104).png>)
+> ### ![Homepage](images/home.png)
 
-> ### ![Favourites](<images/Screenshot(110).png>)
+> ### ![Favourites](images/favourites.png)
 
-> ### ![filteredPlaces](<images/Screenshot(106).png>)
+> ### ![filteredPlaces](images/filteredplaces.png)
 
 ## Overview
 
