@@ -1,14 +1,14 @@
-#Travel Router
+# Travel Router
 
 A interesting way to find Hotels,Restaurants and Attractions arround us or in any other place.You can filter between places by their ratings and types and can do these filter by giving command to virtual assistant Alan.
 
-##Preview
+> ## Preview
 
-### ![Homepage](<images/Screenshot(104).png>)
+> ### ![Homepage](<images/Screenshot(104).png>)
 
-### ![Favourites](<images/Screenshot(110).png>)
+> ### ![Favourites](<images/Screenshot(110).png>)
 
-### ![filteredPlaces](<images/Screenshot(106).png>)
+> ### ![filteredPlaces](<images/Screenshot(106).png>)
 
 ## Overview
 
