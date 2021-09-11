@@ -16,11 +16,11 @@ A interesting way to find Hotels,Restaurants and Attractions arround us or in an
 
   - **Home Page**
 
-    - It shows list and map of places and a header containing various buttons
+    - It shows list of places,map and a header containing various buttons
 
-  - **SignIn Page**
+  - **Favourites**
 
-    - Sign in with Google button.
+    - Show all our Favourites which we have added.
 
 ## **Starting the Dev Server**
 
