@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+#Travel Router
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A interesting way to find Hotels,Restaurants and Attractions arround us or in any other place.You can filter between places by their ratings and types and can do these filter by giving command to virtual assistant Alan.
 
-## Available Scripts
+##Preview
 
-In the project directory, you can run:
+### ![Homepage](<images/Screenshot(104).png>)
 
-### `npm start`
+### ![Favourites](<images/Screenshot(110).png>)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### ![filteredPlaces](<images/Screenshot(106).png>)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Overview
 
-### `npm test`
+- ### Pages:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  - **Home Page**
 
-### `npm run build`
+    - It shows list and map of places and a header containing various buttons
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  - **SignIn Page**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    - Sign in with Google button.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## **Starting the Dev Server**
 
-### `npm run eject`
+- Clone the repository to your local system. `https://github.com/tushargupta1109/travel_router`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Firebase API Setup:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  1.  Go to [Firebase Console](https://console.firebase.google.com) and follow the steps to create a new Firebase project.
+  2.  Select `</>` , _Add a project via Code_.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+  3.  Create a new web app using the steps provided on the console.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  4.  You will recieve a firebasConfig object with the first paramter as API key. Copy it, which will look something like:
 
-## Learn More
+      ```js
+              cosnt firebaseConfig = {
+              apiKey: "process.env.REACT_APP_FIREBASE",
+              authDomain: "AUTH_DOMAIN",
+              projectId: "PROJECT_ID",
+              storageBucket: "STORAGE_BUCKET",
+              messagingSenderId: "*************",
+              appId: "******************************",
+              measurementId: "*************"
+            };
+      ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  5.  After you get the Firebase API key, create a .env file in the root folder of the repository
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  6.  Insert the folowing snippet in the file
 
-### Code Splitting
+           REACT_APP_FIREBASE="API_KEY_HERE"
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Rapid API Setup:
 
-### Analyzing the Bundle Size
+  1.  Go to the following link and set up a new project from <https://rapidapi.com/hub>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+  2.  Get the Api key
 
-### Making a Progressive Web App
+  3.  A new API key will be generated. Copy it in the .env file.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+               REACT_APP_RAPIDAPI_KEY="API_KEY_HERE"
 
-### Advanced Configuration
+- Google Maps API Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  1.  Go to the following link and set up a new project from <https://developers.google.com/maps/apis-by-platform>
 
-### Deployment
+  2.  Get the Api key
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+  3.  A new API key will be generated. Copy it in the .env file.
 
-### `npm run build` fails to minify
+               REACT_APP_GOOGLE_MAPS_API_KEY
+               ="API_KEY_HERE"
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Ensure that .env is added in .gitignore file.
+
+- In the root folder and enter the following commands in the CLI
+
+          npm i or yarn
+          npm start or yarn start
+
+- If you wish to contribute, either look for issues already created or create an issue if you have a new idea.
+  <br/>
