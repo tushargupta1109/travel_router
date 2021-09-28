@@ -19,7 +19,6 @@ import useStyles from "./styles.js";
 const auth = firebase.auth();
 
 const PlaceDetails = ({ place, selected, refProp }) => {
-  const [fav, setFav] = useContext(favContext);
   const [userin] = useAuthState(auth);
 
   const handleadd = async () => {
@@ -135,13 +134,6 @@ const PlaceDetails = ({ place, selected, refProp }) => {
           onClick={() => window.open(place.web_url, "_blank")}
         >
           Trip Advisor
-        </Button>
-        <Button
-          size="small"
-          color="primary"
-          onClick={() => window.open(place.website, "_blank")}
-        >
-          Website
         </Button>
         {userin ? (
           <Button size="small" color="primary" onClick={() => handleadd()}>
