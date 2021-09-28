@@ -5,7 +5,6 @@ import SearchIcon from "@material-ui/icons/Search";
 import useStyles from "./styles.js";
 import { Link } from "react-router-dom";
 import firebase from "../firebase";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 const auth = firebase.auth();
 
@@ -53,7 +52,7 @@ const Header = ({ setCoords }) => {
         </Typography>
         {userin ? (
           <>
-          <Link
+            <Link
               to="/Favourites"
               style={{ color: "white", textDecoration: "none" }}
             >

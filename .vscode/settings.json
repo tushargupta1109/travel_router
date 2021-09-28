@@ -1,0 +1,19 @@
+{
+  "files.associations": {
+    "algorithm": "cpp",
+    "limits": "cpp",
+    "xutility": "cpp",
+    "deque": "cpp",
+    "initializer_list": "cpp",
+    "vector": "cpp",
+    "xstring": "cpp",
+    "utility": "cpp",
+    "unordered_map": "cpp",
+    "chrono": "cpp",
+    "random": "cpp",
+    "array": "cpp",
+    "list": "cpp",
+    "queue": "cpp",
+    "stack": "cpp"
+  }
+}

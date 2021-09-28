@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { CssBaseline, Grid } from '@material-ui/core';
-import { getPlacesData, getWeatherData } from '../api/travelAdvisorAPI';
+import { getPlacesData } from '../api/travelAdvisorAPI';
 import Header from './Header/Header';
 import List from './List/List';
 import Map from './Map/Map';
