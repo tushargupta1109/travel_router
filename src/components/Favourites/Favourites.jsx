@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { favContext } from "../context";
 import firebase, { db } from "../firebase";
 import useStyles from "./styles.js";
-import Favshow from "../Favshow/Favshow";
+import Favshow from "../FavShow/Favshow";
 
 const Favourites = () => {
   const [elRefs, setElRefs] = useState([]);
