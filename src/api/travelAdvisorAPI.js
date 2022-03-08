@@ -19,3 +19,19 @@ export const getPlacesData = async (type, sw, ne) => {
     console.log(error);
   }
 };
+
+
+// latitude: '28.375694',
+//         longitude: '79.43167',
+        // lang: 'en_US',
+        // hotel_class: '1,2,3',
+        // limit: '30',
+        // adults: '1',
+        // amenities: 'beach,bar_lounge,airport_transportation',
+        // rooms: '1',
+        // child_rm_ages: '7,10',
+        // currency: 'USD',
+        // checkin: '2022-03-08',
+        // zff: '4,6',
+        // subcategory: 'hotel,bb,specialty',
+        // nights: '2'

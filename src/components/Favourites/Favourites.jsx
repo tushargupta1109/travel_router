@@ -23,7 +23,7 @@ const Favourites = () => {
         });
     }
     fetchf();
-  }, []);
+  }, []); 
 
   useEffect(() => {
     setElRefs((refs) =>

@@ -14,6 +14,11 @@
     "array": "cpp",
     "list": "cpp",
     "queue": "cpp",
-    "stack": "cpp"
+    "stack": "cpp",
+    "xhash": "cpp",
+    "xtree": "cpp",
+    "bitset": "cpp",
+    "type_traits": "cpp",
+    "map": "cpp"
   }
 }

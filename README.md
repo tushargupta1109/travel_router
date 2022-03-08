@@ -1,6 +1,6 @@
 # Travel Router
 
-A interesting way to find Hotels,Restaurants and Attractions arround us or in any other place.You can filter between places by their ratings and types and can do these filter by giving command to virtual assistant Alan.
+A interesting way to find Hotels,Restaurants and Attractions arround us or in any other place.You can filter between places by their ratings and types.
 
 > ## Preview
 

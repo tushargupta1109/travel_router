@@ -33,7 +33,7 @@ const PlaceDetails = ({ place, selected, refProp }) => {
       ranking: place.ranking ? place.ranking : "",
       rating: place.rating ? place.rating : "",
       num_reviews: place.num_reviews ? place.num_reviews : "",
-      awards: place.awards ? place.awards : [],
+      awards: place.awards ? place.awards : [], 
     };
     const data = await db.collection("users").doc(uid).get();
     if (data) {
